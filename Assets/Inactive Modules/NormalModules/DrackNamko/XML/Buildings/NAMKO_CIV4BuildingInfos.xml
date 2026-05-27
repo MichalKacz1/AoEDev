@@ -240,10 +240,10 @@
             <UnitCombatFreeExperiences>
 			</UnitCombatFreeExperiences>
             <SpecialistClassCounts>
-                <SpecialistClassCount>
+                <SpecialistClassCounts>
                     <SpecialistClass>SPECIALISTCLASS_PRIEST</SpecialistClass>
                     <iSpecialistClassCount>2</iSpecialistClassCount>
-                </SpecialistClassCount>
+                </SpecialistClassCounts>
             </SpecialistClassCounts>
             <ConstructSound>AS2D_BUILD_THEATRE</ConstructSound>
             <Flavors>
@@ -266,7 +266,7 @@
             <Help>TEXT_BUILDING_NAMKO_RECREATION_FURNACE_HELP</Help>
             <Advisor>ADVISOR_GROWTH</Advisor>
             <ArtDefineTag>ART_DEF_BUILDING_NAMKO_RECREATION_FURNACE</ArtDefineTag>
-            <PrereqTech>TECH_SORCERY</PrereqTech>
+            <PrereqTech>TECH_NECROMANCY</PrereqTech>
             <iCost>350</iCost>  
             <iConquestProb>25</iConquestProb>
             <iAsset>1</iAsset>
@@ -294,10 +294,10 @@
 			</UnitCombatFreeExperiences>
             <FreePromotion>PROMOTION_GCF_ZEALOUS1</FreePromotion>
             <SpecialistClassCounts>
-                <SpecialistClassCount>
+                <SpecialistClassCounts>
                     <SpecialistClass>SPECIALISTCLASS_PRIEST</SpecialistClass>
                     <iSpecialistClassCount>3</iSpecialistClassCount>
-                </SpecialistClassCount>
+                </SpecialistClassCounts>
             </SpecialistClassCounts>
             <CommerceChanges>
                 <iCommerce>2</iCommerce> <!--Gold-->
@@ -344,10 +344,10 @@
 				<iCommerce>0</iCommerce>
 			</CommerceModifiers>
 			<SpecialistClassCounts>
-				<SpecialistClassCount>
+				<SpecialistClassCounts>
 					<SpecialistClass>SPECIALISTCLASS_MERCHANT</SpecialistClass>
 					<iSpecialistClassCount>1</iSpecialistClassCount>
-				</SpecialistClassCount>
+				</SpecialistClassCounts>
 			</SpecialistClassCounts>
 			<ConstructSound>AS2D_BUILD_MARKETPLACE</ConstructSound>
 			<Flavors>
@@ -389,10 +389,10 @@
 				<iCommerce>0</iCommerce>
 			</CommerceModifiers>
 			<SpecialistClassCounts>
-				<SpecialistClassCount>
+				<SpecialistClassCounts>
 					<SpecialistClass>SPECIALISTCLASS_SCIENTIST</SpecialistClass>
 					<iSpecialistClassCount>2</iSpecialistClassCount>
-				</SpecialistClassCount>
+				</SpecialistClassCounts>
 			</SpecialistClassCounts>
 			<ConstructSound>AS2D_BUILD_LIBRARY</ConstructSound>
 			<Flavors>

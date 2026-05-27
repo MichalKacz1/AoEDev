@@ -116,10 +116,10 @@
 				<iCommerce>10</iCommerce>
 			</CommerceModifiers>
 			<SpecialistClassCounts>
-				<SpecialistClassCount>
+				<SpecialistClassCounts>
 					<SpecialistClass>SPECIALISTCLASS_PRIEST</SpecialistClass>
 					<iSpecialistClassCount>2</iSpecialistClassCount>
-				</SpecialistClassCount>
+				</SpecialistClassCounts>
 			</SpecialistClassCounts>
 			<ConstructSound>AS2D_BUILD_THEATRE</ConstructSound>
 			<Flavors>

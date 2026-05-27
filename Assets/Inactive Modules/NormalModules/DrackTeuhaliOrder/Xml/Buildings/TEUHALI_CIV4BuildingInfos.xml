@@ -216,10 +216,10 @@
 				<iCommerce>0</iCommerce>
 			</CommerceChanges>
 			<SpecialistClassCounts>
-				<SpecialistClassCount>
+				<SpecialistClassCounts>
 					<SpecialistClass>SPECIALISTCLASS_MERCHANT</SpecialistClass>
 					<iSpecialistClassCount>2</iSpecialistClassCount>
-				</SpecialistClassCount>
+				</SpecialistClassCounts>
 			</SpecialistClassCounts>
 			<ConstructSound>AS2D_BUILD_MARKETPLACE</ConstructSound>
 			<Flavors>
@@ -285,10 +285,10 @@
 			<fVisibilityPriority>1</fVisibilityPriority>
             <iTradeRouteModifier>35</iTradeRouteModifier>
 			<SpecialistClassCounts>
-				<SpecialistClassCount>
+				<SpecialistClassCounts>
 					<SpecialistClass>SPECIALISTCLASS_MERCHANT</SpecialistClass>
 					<iSpecialistClassCount>1</iSpecialistClassCount>
-				</SpecialistClassCount>
+				</SpecialistClassCounts>
 			</SpecialistClassCounts>
 			<ConstructSound>AS2D_BUILD_MARKETPLACE</ConstructSound>
 			<Flavors>
@@ -327,10 +327,10 @@
 				<iYield>0</iYield>
 			</TradeYieldModifiers>
 			<SpecialistClassCounts>
-				<SpecialistClassCount>
+				<SpecialistClassCounts>
 					<SpecialistClass>SPECIALISTCLASS_MERCHANT</SpecialistClass>
 					<iSpecialistClassCount>3</iSpecialistClassCount>
-				</SpecialistClassCount>
+				</SpecialistClassCounts>
 			</SpecialistClassCounts>
 			<Flavors>
 				<Flavor>
@@ -371,10 +371,10 @@
 				</BonusProductionModifier>
 			</BonusProductionModifiers>
             <SpecialistClassCounts>
-				<SpecialistClassCount>
+				<SpecialistClassCounts>
 					<SpecialistClass>SPECIALISTCLASS_MERCHANT</SpecialistClass>
 					<iSpecialistClassCount>1</iSpecialistClassCount>
-				</SpecialistClassCount>
+				</SpecialistClassCounts>
 			</SpecialistClassCounts>
 			<Flavors>
 				<Flavor>
@@ -407,10 +407,10 @@
 			<iAsset>3</iAsset>
 			<fVisibilityPriority>1</fVisibilityPriority>
 			<SpecialistClassCounts>
-				<SpecialistClassCount>
+				<SpecialistClassCounts>
 					<SpecialistClass>SPECIALISTCLASS_PRIEST</SpecialistClass>
 					<iSpecialistClassCount>1</iSpecialistClassCount>
-				</SpecialistClassCount>
+				</SpecialistClassCounts>
 			</SpecialistClassCounts>
 			<BonusHappinessChanges>
 				<BonusHappinessChange>
@@ -875,10 +875,10 @@
 				<iCommerce>0</iCommerce>
 			</CommerceModifiers>
 			<SpecialistClassCounts>
-				<SpecialistClassCount>
+				<SpecialistClassCounts>
 					<SpecialistClass>SPECIALISTCLASS_SCIENTIST</SpecialistClass>
 					<iSpecialistClassCount>1</iSpecialistClassCount>
-				</SpecialistClassCount>
+				</SpecialistClassCounts>
 			</SpecialistClassCounts>
 			<LocalSpecialistClassCommerceChanges>
 				<LocalSpecialistClassCommerceChange>
@@ -888,8 +888,8 @@
 						<iCommerce>1</iCommerce>
 						<iCommerce>1</iCommerce>
 					</CommerceChanges>
-				</LocalSpecialistClassCommerceChange>
-			</LocalSpecialistClassCommerceChanges>
+				</LocalSpecialistCommerceChange>
+			</LocalSpecialistCommerceChanges>
 			<ConstructSound>AS2D_BUILD_LIBRARY</ConstructSound>
 			<Flavors>
 				<Flavor>
@@ -923,10 +923,10 @@
 				<iCommerce>0</iCommerce>
 			</CommerceModifiers>
 			<SpecialistClassCounts>
-				<SpecialistClassCount>
+				<SpecialistClassCounts>
 					<SpecialistClass>SPECIALISTCLASS_STATESMAN</SpecialistClass>
 					<iSpecialistClassCount>2</iSpecialistClassCount>
-				</SpecialistClassCount>
+				</SpecialistClassCounts>
 			</SpecialistClassCounts>
 			<Flavors>
 				<Flavor>
@@ -959,10 +959,10 @@
 				<iCommerce>0</iCommerce>
 			</CommerceModifiers>
 			<SpecialistClassCounts>
-				<SpecialistClassCount>
+				<SpecialistClassCounts>
 					<SpecialistClass>SPECIALISTCLASS_SCIENTIST</SpecialistClass>
 					<iSpecialistClassCount>2</iSpecialistClassCount>
-				</SpecialistClassCount>
+				</SpecialistClassCounts>
 			</SpecialistClassCounts>
 			<Flavors>
 				<Flavor>
