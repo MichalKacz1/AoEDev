@@ -10045,6 +10045,8 @@ void CvGameTextMgr::parseCivInfos(CvWStringBuffer &szInfoText, CivilizationTypes
 	UnitTypes eUniqueUnit;
 	BuildingTypes eDefaultBuilding;
 	BuildingTypes eUniqueBuilding;
+	SpecialistTypes eDefaultSpecialist;
+	SpecialistTypes eUniqueSpecialist;
 /*************************************************************************************************/
 /**	Xienwolf Tweak							11/21/08											**/
 /**																								**/
@@ -10418,6 +10420,147 @@ void CvGameTextMgr::parseCivInfos(CvWStringBuffer &szInfoText, CivilizationTypes
 /*************************************************************************************************/
 /**	Tweak									END													**/
 /*************************************************************************************************/
+		// Unique Specialists
+		szText = gDLL->getText("TXT_KEY_UNIQUE_SPECIALISTS");
+		if (bDawnOfMan)
+		{
+			if (bFound)
+			{
+				szInfoText.append(NEWLINE);
+			}
+			szTempString.Format(L"%s: ", szText.GetCString());
+		}
+		else
+		{
+			szTempString.Format(NEWLINE SETCOLR L"%s" ENDCOLR, TEXT_COLOR("COLOR_ALT_HIGHLIGHT_TEXT"), szText.GetCString());
+		}
+		szInfoText.append(szTempString);
+
+		bFound = false;
+		for (int iI = 0; iI < GC.getNumSpecialistClassInfos(); ++iI)
+		{
+			/*************************************************************************************************/
+			/**	Xienwolf Tweak							10/01/08											**/
+			/**																								**/
+			/**				Allows display of buildings which are not a replacement, but Unique				**/
+			/*************************************************************************************************/
+			eUniqueSpecialist = ((SpecialistTypes)(GC.getCivilizationInfo(eCivilization).getCivilizationSpecialists(iI)));
+			eDefaultSpecialist = ((SpecialistTypes)(GC.getSpecialistClassInfo((SpecialistClassTypes)iI).getDefaultSpecialistIndex()));
+			if (eUniqueSpecialist != NO_SPECIALIST)
+			{
+				if (eDefaultSpecialist == NO_SPECIALIST || GC.getSpecialistClassInfo((SpecialistClassTypes)iI).isUnique() || eDefaultSpecialist != eUniqueSpecialist)
+				{
+					// Add Specialist
+					if (bDawnOfMan)
+					{
+						if (bFound)
+						{
+							szInfoText.append(L", ");
+						}
+						if (GC.getSpecialistClassInfo((SpecialistClassTypes)iI).isUnique())
+						{
+							szBuffer.Format((bLinks ? L"<link=literal>%s</link>" : L"%s"), GC.getSpecialistInfo(eUniqueSpecialist).getDescription());
+						}
+						else
+						{
+							szBuffer.Format((bLinks ? L"<link=literal>%s</link> - (<link=literal>%s</link>)" : L"%s - (%s)"), GC.getSpecialistInfo(eUniqueSpecialist).getDescription(), GC.getSpecialistInfo(eDefaultSpecialist).getDescription());
+						}
+					}
+					else
+					{
+						if (GC.getSpecialistClassInfo((SpecialistClassTypes)iI).isUnique())
+						{
+							szBuffer.Format(L"\n  %c%s", gDLL->getSymbolID(BULLET_CHAR), GC.getSpecialistInfo(eUniqueSpecialist).getDescription());
+						}
+						else
+						{
+							szBuffer.Format(L"\n  %c%s - (%s)", gDLL->getSymbolID(BULLET_CHAR), GC.getSpecialistInfo(eUniqueSpecialist).getDescription(), GC.getSpecialistInfo(eDefaultSpecialist).getDescription());
+						}
+					}
+					/*************************************************************************************************/
+					/**	Tweak									END													**/
+					/*************************************************************************************************/
+					szInfoText.append(szBuffer);
+					bFound = true;
+				}
+			}
+		}
+		if (!bFound)
+		{
+			szText = gDLL->getText("TXT_KEY_UNIQUE_SPECIALISTS_NO");
+			if (bDawnOfMan)
+			{
+				szTempString.Format(L"%s", szText.GetCString());
+			}
+			else
+			{
+				szTempString.Format(L"%s  %s", NEWLINE, szText.GetCString());
+			}
+			szInfoText.append(szTempString);
+		}
+		/*************************************************************************************************/
+		/**	Xienwolf Tweak							10/18/08											**/
+		/**																								**/
+		/**										Denied Specialists										**/
+		/*************************************************************************************************/
+		szText = gDLL->getText("TXT_KEY_DENIED_SPECIALISTS");
+		if (bDawnOfMan)
+		{
+			if (bFound)
+			{
+				szInfoText.append(NEWLINE);
+			}
+			szTempString.Format(L"%s: ", szText.GetCString());
+		}
+		else
+		{
+			szTempString.Format(NEWLINE SETCOLR L"%s" ENDCOLR, TEXT_COLOR("COLOR_ALT_HIGHLIGHT_TEXT"), szText.GetCString());
+		}
+		szInfoText.append(szTempString);
+
+		bFound = false;
+		for (int iI = 0; iI < GC.getNumSpecialistClassInfos(); ++iI)
+		{
+			eUniqueSpecialist = ((SpecialistTypes)(GC.getCivilizationInfo(eCivilization).getCivilizationSpecialists(iI)));
+			eDefaultSpecialist = ((SpecialistTypes)(GC.getSpecialistClassInfo((SpecialistClassTypes)iI).getDefaultSpecialistIndex()));
+			if ((eDefaultSpecialist != NO_SPECIALIST) && !(GC.getSpecialistClassInfo((SpecialistClassTypes)iI).isUnique()))
+			{
+				if (eUniqueSpecialist == NO_SPECIALIST)
+				{
+					// Add Specialist
+					if (bDawnOfMan)
+					{
+						if (bFound)
+						{
+							szInfoText.append(L", ");
+						}
+						szBuffer.Format((bLinks ? L"<link=literal>%s</link>" : L"%s"), GC.getSpecialistInfo(eDefaultSpecialist).getDescription());
+					}
+					else
+					{
+						szBuffer.Format(L"\n  %c%s", gDLL->getSymbolID(BULLET_CHAR), GC.getSpecialistInfo(eDefaultSpecialist).getDescription());
+					}
+					szInfoText.append(szBuffer);
+					bFound = true;
+				}
+			}
+		}
+		if (!bFound)
+		{
+			szText = gDLL->getText("TXT_KEY_DENIED_SPECIALISTS_NO");
+			if (bDawnOfMan)
+			{
+				szTempString.Format(L"%s", szText.GetCString());
+			}
+			else
+			{
+				szTempString.Format(L"%s  %s", NEWLINE, szText.GetCString());
+			}
+			szInfoText.append(szTempString);
+		}
+		/*************************************************************************************************/
+		/**	Tweak									END													**/
+		/*************************************************************************************************/
 		//Special Abilities
 		if (!CvWString(GC.getCivilizationInfo(eCivilization).getHelp()).empty())
 		{
@@ -20249,7 +20392,7 @@ void CvGameTextMgr::setBuildingHelp(CvWStringBuffer &szBuffer, BuildingTypes eBu
 		else if (ePlayer != NO_PLAYER && vCivsBuilding[GET_PLAYER(ePlayer).getCivilizationType()])
 		{
 			szSpecialistNameBuffer[iI].append(L"[COLOR_UNIT_TEXT][LINK=literal]");
-			szSpecialistNameBuffer[iI] = gDLL->getText(GC.getSpecialistInfo((SpecialistTypes)GC.getCivilizationInfo(GET_PLAYER(ePlayer).getCivilizationType()).getCivilizationSpecialists(iI)).getTextKeyWide());
+			szSpecialistNameBuffer[iI].append(gDLL->getText(GC.getSpecialistInfo((SpecialistTypes)GC.getCivilizationInfo(GET_PLAYER(ePlayer).getCivilizationType()).getCivilizationSpecialists(iI)).getTextKeyWide()));
 			szSpecialistNameBuffer[iI].append(L"[\\LINK][COLOR_REVERT]");
 			bBufferEmpty[iI] = false;
 		}

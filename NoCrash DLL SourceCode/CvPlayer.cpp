@@ -1484,7 +1484,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 		}
 
 		FAssertMsg(0 < GC.getNumSpecialistClassInfos(), "GC.getNumSpecialistClassInfos() is not greater than zero but it is used to allocate memory in CvPlayer::reset");
-		FAssertMsg(m_paiSpecialistClassExtraHappiness == NULL, "about to leak memory, CvPlayer::m_paiSpecialistTypeExtraHappiness");
+		FAssertMsg(m_paiSpecialistClassExtraHappiness == NULL, "about to leak memory, CvPlayer::m_paiSpecialistClassExtraHappiness");
 		m_paiSpecialistClassExtraHappiness = new int[GC.getNumSpecialistClassInfos()];
 		for (iI = 0; iI < GC.getNumSpecialistClassInfos(); iI++)
 		{
@@ -1492,14 +1492,14 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 		}
 
 		FAssertMsg(0 < GC.getNumSpecialistClassInfos(), "GC.getNumSpecialistClassInfos() is not greater than zero but it is used to allocate memory in CvPlayer::reset");
-		FAssertMsg(m_paiSpecialistClassExtraHealth == NULL, "about to leak memory, CvPlayer::m_paiSpecialistTypeExtraHealth");
+		FAssertMsg(m_paiSpecialistClassExtraHealth == NULL, "about to leak memory, CvPlayer::m_paiSpecialistClassExtraHealth");
 		m_paiSpecialistClassExtraHealth = new int[GC.getNumSpecialistClassInfos()];
 		for (iI = 0; iI < GC.getNumSpecialistClassInfos(); iI++)
 		{
 			m_paiSpecialistClassExtraHealth[iI] = 0;
 		}
 		FAssertMsg(0 < GC.getNumSpecialistClassInfos(), "GC.getNumSpecialistClassInfos() is not greater than zero but it is used to allocate memory in CvPlayer::reset");
-		FAssertMsg(m_paiSpecialistClassExtraCrime == NULL, "about to leak memory, CvPlayer::m_paiSpecialistTypeExtraCrime");
+		FAssertMsg(m_paiSpecialistClassExtraCrime == NULL, "about to leak memory, CvPlayer::m_paiSpecialistClassExtraCrime");
 		m_paiSpecialistClassExtraCrime = new int[GC.getNumSpecialistClassInfos()];
 		for (iI = 0; iI < GC.getNumSpecialistClassInfos(); iI++)
 		{
@@ -1507,7 +1507,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 		}
 
 		FAssertMsg(0 < GC.getNumSpecialistClassInfos(), "GC.getNumSpecialistClassInfos() is not greater than zero but it is used to allocate memory in CvPlayer::reset");
-		FAssertMsg(m_paiSpecialistClassExtraGPP == NULL, "about to leak memory, CvPlayer::m_paiSpecialistTypeExtraCrime");
+		FAssertMsg(m_paiSpecialistClassExtraGPP == NULL, "about to leak memory, CvPlayer::m_paiSpecialistClassExtraCrime");
 		m_paiSpecialistClassExtraGPP = new int[GC.getNumSpecialistClassInfos()];
 		for (iI = 0; iI < GC.getNumSpecialistClassInfos(); iI++)
 		{
