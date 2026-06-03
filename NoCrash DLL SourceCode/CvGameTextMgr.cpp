@@ -5888,6 +5888,9 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 					// can this city have any of this specialist?
 					if (iMaxThisSpecialist > 0 || bIsDefaultSpecialist)
 					{
+						SpecialistTypes eSpecialist = pCity->getSpecialistTypeFromClass((SpecialistClassTypes) iI);
+						if (eSpecialist == NO_SPECIALIST)
+							continue;
 						// start color
 						if (pCity->getForceSpecialistClassCount((SpecialistClassTypes) iI) > 0)
 							szString.append(CvWString::format(L"\n" SETCOLR, TEXT_COLOR("COLOR_NEGATIVE_TEXT")));
@@ -5897,7 +5900,7 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 							szString.append(CvWString::format(L"\n" SETCOLR, TEXT_COLOR("COLOR_HIGHLIGHT_TEXT")));
 
 						// add name
-						szString.append(GC.getSpecialistInfo(pCity->getSpecialistTypeFromClass((SpecialistClassTypes) iI)).getDescription());
+						szString.append(GC.getSpecialistInfo(eSpecialist).getDescription());
 
 						// end color
 						szString.append(CvWString::format( ENDCOLR ));
@@ -10826,7 +10829,7 @@ void CvGameTextMgr::parseSpecialistHelp(CvWStringBuffer &szHelpString, Specialis
 			if (bHasChanges)
 			{
 				szHelpString.append(szBuffer);
-				if (pCity != NULL)
+				if (pCity != NULL && pCity->getSpecialistTypeFromClass((SpecialistClassTypes)i) != NO_SPECIALIST)
 					szHelpString.append(gDLL->getText("TXT_KEY_FROM_SPECIALIST", GC.getSpecialistInfo(pCity->getSpecialistTypeFromClass((SpecialistClassTypes)i)).getTextKeyWide()));
 				else
 					szHelpString.append(gDLL->getText("TXT_KEY_FROM_SPECIALIST", GC.getSpecialistInfo((SpecialistTypes)GC.getSpecialistClassInfo((SpecialistClassTypes)i).getDefaultSpecialistIndex()).getTextKeyWide()));
@@ -10836,7 +10839,7 @@ void CvGameTextMgr::parseSpecialistHelp(CvWStringBuffer &szHelpString, Specialis
 			if (bHasChanges)
 			{
 				szHelpString.append(szBuffer);
-				if (pCity != NULL)
+				if (pCity != NULL && pCity->getSpecialistTypeFromClass((SpecialistClassTypes)i) != NO_SPECIALIST)
 					szHelpString.append(gDLL->getText("TXT_KEY_FROM_SPECIALIST", GC.getSpecialistInfo(pCity->getSpecialistTypeFromClass((SpecialistClassTypes)i)).getTextKeyWide()));
 				else
 					szHelpString.append(gDLL->getText("TXT_KEY_FROM_SPECIALIST", GC.getSpecialistInfo((SpecialistTypes)GC.getSpecialistClassInfo((SpecialistClassTypes)i).getDefaultSpecialistIndex()).getTextKeyWide()));
@@ -10849,7 +10852,7 @@ void CvGameTextMgr::parseSpecialistHelp(CvWStringBuffer &szHelpString, Specialis
 				if(iSpecialistClassCrime > 0)
 					szHelpString.append(L"+");
 				szHelpString.append(gDLL->getText(L"%d1[ICON_CRIME]", iSpecialistClassCrime));
-				if(pCity != NULL)
+				if(pCity != NULL && pCity->getSpecialistTypeFromClass((SpecialistClassTypes)i) != NO_SPECIALIST)
 					szHelpString.append(gDLL->getText("TXT_KEY_FROM_SPECIALIST", GC.getSpecialistInfo(pCity->getSpecialistTypeFromClass((SpecialistClassTypes)i)).getTextKeyWide()));
 				else
 					szHelpString.append(gDLL->getText("TXT_KEY_FROM_SPECIALIST", GC.getSpecialistInfo((SpecialistTypes)GC.getSpecialistClassInfo((SpecialistClassTypes)i).getDefaultSpecialistIndex()).getTextKeyWide()));
@@ -20384,15 +20387,21 @@ void CvGameTextMgr::setBuildingHelp(CvWStringBuffer &szBuffer, BuildingTypes eBu
 		//SpecialistTypes eSpecialist = (SpecialistTypes)GC.getSpecialistClassInfo((SpecialistClassTypes)iI).getDefaultSpecialistIndex();
 		if (pCity != NULL)
 		{
+			SpecialistTypes eSpecialist = pCity->getSpecialistTypeFromClass((SpecialistClassTypes)iI);
+			if (eSpecialist == NO_SPECIALIST)
+				continue;
 			szSpecialistNameBuffer[iI].append(L"[COLOR_UNIT_TEXT][LINK=literal]");
-			szSpecialistNameBuffer[iI] = gDLL->getText(GC.getSpecialistInfo(pCity->getSpecialistTypeFromClass((SpecialistClassTypes)iI)).getTextKeyWide());
+			szSpecialistNameBuffer[iI] = gDLL->getText(GC.getSpecialistInfo(eSpecialist).getTextKeyWide());
 			szSpecialistNameBuffer[iI].append(L"[\\LINK][COLOR_REVERT]");
 			bBufferEmpty[iI] = false;
 		}
 		else if (ePlayer != NO_PLAYER && vCivsBuilding[GET_PLAYER(ePlayer).getCivilizationType()])
 		{
+			SpecialistTypes eSpecialist = (SpecialistTypes)GC.getCivilizationInfo(GET_PLAYER(ePlayer).getCivilizationType()).getCivilizationSpecialists(iI);
+			if (eSpecialist == NO_SPECIALIST)
+				continue;
 			szSpecialistNameBuffer[iI].append(L"[COLOR_UNIT_TEXT][LINK=literal]");
-			szSpecialistNameBuffer[iI].append(gDLL->getText(GC.getSpecialistInfo((SpecialistTypes)GC.getCivilizationInfo(GET_PLAYER(ePlayer).getCivilizationType()).getCivilizationSpecialists(iI)).getTextKeyWide()));
+			szSpecialistNameBuffer[iI] = gDLL->getText(GC.getSpecialistInfo(eSpecialist).getTextKeyWide());
 			szSpecialistNameBuffer[iI].append(L"[\\LINK][COLOR_REVERT]");
 			bBufferEmpty[iI] = false;
 		}
