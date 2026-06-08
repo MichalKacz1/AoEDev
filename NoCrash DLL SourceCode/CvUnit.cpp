@@ -7006,6 +7006,12 @@ bool CvUnit::canAirlift(const CvPlot* pPlot) const
 			return false;
 		}
 	}
+
+	// Upstream bug: function fell off end without returning. VC7.1 cl.exe
+	// happened to emit "mov al, 1; ret" so retail worked by accident;
+	// clang/modern compilers treat fall-off as UB and return false on the
+	// success path, hiding the airlift button.
+	return true;
 }
 
 
@@ -22375,7 +22381,15 @@ void CvUnit::setHasPromotion(PromotionTypes eIndex, bool bNewValue, bool bSupres
 				{
 					if (GC.getPromotionInfo((PromotionTypes)iI).getNumPromotionReplacedBy() > 0)
 					{
-						for (int iJ = 0; iJ < kPromotion.getNumPromotionReplacedBy(); iJ++)
+						// Bugfix: iterate the EXISTING promotion's replacedBy list,
+						// not the new promotion's.  We're checking "does anything in
+						// iI's replacedBy list equal the promotion we're now adding?".
+						// Indexing iI's list while bounding by kPromotion's count
+						// silently no-ops whenever kPromotion has fewer entries (or
+						// none) than iI -- which is exactly when terminal chains
+						// like PHOENIX_EGG_HELD -> PHOENIX_SMALL fail to remove the
+						// old promotion.
+						for (int iJ = 0; iJ < GC.getPromotionInfo((PromotionTypes)iI).getNumPromotionReplacedBy(); iJ++)
 						{
 							if (GC.getPromotionInfo((PromotionTypes)iI).getPromotionReplacedBy(iJ) == eIndex)
 							{
@@ -32158,6 +32172,10 @@ const CvArtInfoUnit* CvUnit::getArtInfo(int i, EraTypes eEra) const
 
 		return ARTFILEMGR.getUnitArtInfo(getExtraArtDefineTag3());
 	}
+	// Same UB pattern as canAirlift: original cl.exe returned NULL via fall-off;
+	// clang's UB-aware optimizer may return garbage. Make NULL explicit so
+	// callers (which already null-check via the ART_INFO_DEFN fallback) work.
+	return NULL;
 }
 
 const TCHAR* CvUnit::getButton() const
